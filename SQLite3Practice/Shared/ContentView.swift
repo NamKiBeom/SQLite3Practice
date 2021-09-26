@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    let db: SQLiteDatabase?
+    
     var body: some View {
         Text("Hello, world!")
             .padding()
@@ -16,6 +18,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(db: testDatabase)
     }
 }

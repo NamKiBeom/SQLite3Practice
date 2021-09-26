@@ -15,6 +15,8 @@
 		C17B809726FF5002003FB037 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17B806C26FF5001003FB037 /* ContentView.swift */; };
 		C17B809826FF5002003FB037 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C17B806D26FF5002003FB037 /* Assets.xcassets */; };
 		C17B809926FF5002003FB037 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C17B806D26FF5002003FB037 /* Assets.xcassets */; };
+		C1A9CC1E270065FA00740771 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A9CC1D270065FA00740771 /* SQLiteDatabase.swift */; };
+		C1A9CC1F270065FA00740771 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A9CC1D270065FA00740771 /* SQLiteDatabase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,7 @@
 		C17B808D26FF5002003FB037 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C17B809126FF5002003FB037 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		C17B809326FF5002003FB037 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1A9CC1D270065FA00740771 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				C17B806B26FF5001003FB037 /* SQLite3PracticeApp.swift */,
+				C1A9CC1D270065FA00740771 /* SQLiteDatabase.swift */,
 				C17B806C26FF5001003FB037 /* ContentView.swift */,
 				C17B806D26FF5002003FB037 /* Assets.xcassets */,
 			);
@@ -310,6 +314,7 @@
 			files = (
 				C17B809626FF5002003FB037 /* ContentView.swift in Sources */,
 				C17B809426FF5002003FB037 /* SQLite3PracticeApp.swift in Sources */,
+				C1A9CC1E270065FA00740771 /* SQLiteDatabase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +324,7 @@
 			files = (
 				C17B809726FF5002003FB037 /* ContentView.swift in Sources */,
 				C17B809526FF5002003FB037 /* SQLite3PracticeApp.swift in Sources */,
+				C1A9CC1F270065FA00740771 /* SQLiteDatabase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
