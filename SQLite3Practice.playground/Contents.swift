@@ -103,7 +103,68 @@ func query() {
     sqlite3_finalize(queryStatement)
 }
 
+// MARK: - UPDATE
+
+let updateStatementString = "UPDATE Contact SET Name = 'Adam' WHERE Id = 1;"
+
+func update() {
+    var updateStatement: OpaquePointer?
+    
+    if sqlite3_prepare_v2(db, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
+        if sqlite3_step(updateStatement) == SQLITE_DONE {
+            print("\nSuccessfully updated row.")
+        } else {
+            print("\nCould not update row.")
+        }
+    } else {
+        print("\nUPDATE statement is not prepared.")
+    }
+    
+    sqlite3_finalize(updateStatement)
+}
+
+// MARK: - DELETE
+
+let deleteStatementString = "DELETE FROM Contact WHERE Id = 1;"
+
+func delete() {
+    var deleteStatement: OpaquePointer?
+    if sqlite3_prepare_v2(db, deleteStatementString, -1, &deleteStatement, nil) == SQLITE_OK {
+        if sqlite3_step(deleteStatement) == SQLITE_DONE {
+            print("\nSuccessfully deleted row.")
+        } else {
+            print("\nCould not delete row.")
+        }
+    } else {
+        print("\nDELETE statement could not be prepared.")
+    }
+    
+    sqlite3_finalize(deleteStatement)
+}
+
+// MARK: - Handling Errors
+
+let malformedQueryString = "SELECT Stuff from Things WHERE Whatever;"
+
+func prepareMalformedQuery() {
+    var malformedStatement: OpaquePointer?
+    
+    if sqlite3_prepare_v2(db, malformedQueryString, -1, &malformedStatement, nil) == SQLITE_OK {
+        print("\nThis should not have happened.")
+    } else {
+        let errorMessage = String(cString: sqlite3_errmsg(db))
+        print(errorMessage)
+    }
+    
+    sqlite3_finalize(malformedStatement)
+}
+
 let db = openDatabase()
 createTable()
 insert()
+update()
+delete()
+prepareMalformedQuery()
 query()
+
+sqlite3_close(db)
