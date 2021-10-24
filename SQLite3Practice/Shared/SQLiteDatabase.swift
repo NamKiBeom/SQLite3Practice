@@ -47,6 +47,27 @@ class SQLiteDatabase {
         }
         
     }
+    
+    func createTable() {
+        let createTableString = """
+        CREATE TABLE Contact(
+        Id INT PRIMARY KEY NOT NULL,
+        Name CHAR(255));
+        """
+
+        var createTableStatement: OpaquePointer?
+        if sqlite3_prepare_v2(dbPointer, createTableString, -1, &createTableStatement, nil) == SQLITE_OK {
+            if sqlite3_step(createTableStatement) == SQLITE_DONE {
+                print("\nContact table created.")
+            } else {
+                print("\nContact table is not created.")
+            }
+        } else {
+            print("\nCREATE TABLE statement is not prepared.")
+        }
+        
+        sqlite3_finalize(createTableStatement)
+    }
 }
 
 var path: String? {
@@ -58,4 +79,5 @@ var path: String? {
         .appendingPathComponent("mytopic.db")
         .path
 }
+
 let testDatabase = try! SQLiteDatabase.open(path: path!)
