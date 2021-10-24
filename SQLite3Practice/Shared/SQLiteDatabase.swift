@@ -123,6 +123,21 @@ class SQLiteDatabase {
         sqlite3_finalize(queryStatement)
     }
 
+    func update() {
+        var updateStatement: OpaquePointer?
+        let updateStatementString = "UPDATE Contact SET Name = 'Adam' WHERE Id = 1;"
+        if sqlite3_prepare_v2(dbPointer, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
+            if sqlite3_step(updateStatement) == SQLITE_DONE {
+                print("\nSuccessfully updated row.")
+            } else {
+                print("\nCould not update row.")
+            }
+        } else {
+            print("\nUPDATE statement is not prepared")
+        }
+        sqlite3_finalize(updateStatement)
+    }
+
 }
 
 var path: String? {

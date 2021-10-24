@@ -14,7 +14,10 @@ struct ContentView: View {
         VStack {
             Text("Hello, world!")
                 .padding()
-                .onAppear(perform: db?.query)
+                .onAppear(perform: {
+                    db?.update()
+                    db?.query()
+                })
         }
         
     }
