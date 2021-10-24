@@ -138,6 +138,23 @@ class SQLiteDatabase {
         sqlite3_finalize(updateStatement)
     }
 
+    func delete() {
+        var deleteStatement: OpaquePointer?
+        let deleteStatementString = "DELETE FROM Contact WHERE Id = 1;"
+
+        if sqlite3_prepare_v2(dbPointer, deleteStatementString, -1, &deleteStatement, nil) ==
+            SQLITE_OK {
+            if sqlite3_step(deleteStatement) == SQLITE_DONE {
+                print("\nSuccessfully deleted row.")
+            } else {
+                print("\nCould not delete row.")
+            }
+        } else {
+            print("\nDELETE statement could not be prepared")
+        }
+        
+        sqlite3_finalize(deleteStatement)
+    }
 }
 
 var path: String? {

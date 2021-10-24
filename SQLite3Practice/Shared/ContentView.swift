@@ -15,7 +15,7 @@ struct ContentView: View {
             Text("Hello, world!")
                 .padding()
                 .onAppear(perform: {
-                    db?.update()
+                    db?.delete()
                     db?.query()
                 })
         }
