@@ -11,10 +11,12 @@ struct ContentView: View {
     let db: SQLiteDatabase?
     
     var body: some View {
-        Text("Hello, world!")
-            .padding()
-            .onAppear(perform: db?.createTable)
-            
+        VStack {
+            Text("Hello, world!")
+                .padding()
+                .onAppear(perform: db?.query)
+        }
+        
     }
 }
 

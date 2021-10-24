@@ -68,6 +68,61 @@ class SQLiteDatabase {
         
         sqlite3_finalize(createTableStatement)
     }
+    
+    func insert() {
+        var insertStatement: OpaquePointer?
+        let insertStatementString = "INSERT INTO Contact (Id, Name) VALUES (?, ?);"
+
+        if sqlite3_prepare_v2(dbPointer, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
+            let id: Int32 = 1
+            let name: NSString = "Ray"
+            sqlite3_bind_int(insertStatement, 1, id)
+            sqlite3_bind_text(insertStatement, 2, name.utf8String, -1, nil)
+            
+            if sqlite3_step(insertStatement) == SQLITE_DONE {
+                print("\nSuccessfully inserted row.")
+            } else {
+                print("\nCould not insert row.")
+            }
+        } else {
+            print("\nINSERT statement is not prepared.")
+        }
+        
+        sqlite3_finalize(insertStatement)
+    }
+    
+    func query() {
+        var queryStatement: OpaquePointer?
+        let queryStatementString = "SELECT * FROM Contact;"
+        
+        
+        if sqlite3_prepare_v2(dbPointer, queryStatementString, -1, &queryStatement, nil) ==
+            SQLITE_OK {
+            
+            if sqlite3_step(queryStatement) == SQLITE_ROW {
+                
+                let id = sqlite3_column_int(queryStatement, 0)
+                
+                guard let queryResultCol1 = sqlite3_column_text(queryStatement, 1) else {
+                    print("Query result is nil")
+                    return
+                }
+                let name = String(cString: queryResultCol1)
+                // 5
+                print("\nQuery Result:")
+                print("\(id) | \(name)")
+            } else {
+                print("\nQuery returned no results.")
+            }
+        } else {
+            // 6
+            let errorMessage = String(cString: sqlite3_errmsg(dbPointer))
+            print("\nQuery is not prepared \(errorMessage)")
+        }
+        // 7
+        sqlite3_finalize(queryStatement)
+    }
+
 }
 
 var path: String? {
